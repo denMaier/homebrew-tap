@@ -3,8 +3,8 @@ class ProxnixWorkstation < Formula
 
   desc "CLI and TUI workstation tooling for proxnix"
   homepage "https://github.com/denMaier/proxnix"
-  url "https://github.com/denMaier/proxnix/archive/v0.6.0.tar.gz"
-  sha256 "843d85db6c7936cff61f05fee45611e4d8b676183fdb9cb42ab36b8a40427521"
+  url "https://github.com/denMaier/proxnix/archive/v0.6.1.tar.gz"
+  sha256 "68ae3ae42bd1394c585e29f857773db5c538f5452b4fa649765c0bdd6946dad8"
   license "MIT"
 
   depends_on arch: :arm64
@@ -32,7 +32,7 @@ class ProxnixWorkstation < Formula
     venv.pip_install resource("pycparser")
     venv.pip_install resource("cffi")
     venv.pip_install resource("cryptography")
-    venv.pip_install_and_link buildpath/"workstation"
+    venv.pip_install_and_link buildpath/"workstation/cli"
   end
 
   def caveats
