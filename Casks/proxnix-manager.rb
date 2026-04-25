@@ -1,13 +1,13 @@
 cask "proxnix-manager" do
-  version "0.5.3"
-  sha256 "4bad7784d18609879efdf1d1dbffc137d7ab15c1acc176fc94ad9955559aceee"
+  version "0.5.4"
+  sha256 "8b5f765758535928f6036e3c253e3c3848835134ef49f4e2d5a48bd644c76f94"
 
-  url "https://github.com/denMaier/proxnix/releases/download/v0.5.3/proxnix-manager-#{version}-macos-arm64.dmg"
+  url "https://github.com/denMaier/proxnix/releases/download/v0.5.4/proxnix-manager-#{version}-macos-arm64.dmg"
   name "Proxnix Manager"
   desc "macOS GUI for proxnix"
   homepage "https://github.com/denMaier/proxnix"
 
-  depends_on formula: "python@3.12"
+  depends_on formula: "python"
   depends_on formula: "sops"
   depends_on macos: ">= :ventura"
 

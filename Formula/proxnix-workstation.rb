@@ -3,13 +3,13 @@ class ProxnixWorkstation < Formula
 
   desc "CLI and TUI workstation tooling for proxnix"
   homepage "https://github.com/denMaier/proxnix"
-  url "https://github.com/denMaier/proxnix/archive/v0.5.3.tar.gz"
-  sha256 "ccc4e567657f8c6c59920bdc65927a69b80bb653a9565f8ca3f3b7f26cb92577"
+  url "https://github.com/denMaier/proxnix/archive/v0.5.4.tar.gz"
+  sha256 "1a64b49854cd2811fc44ae72e39e8f6d0ca4d304c4d21e4603b3ea4e4ec6908c"
   license "MIT"
 
   depends_on arch: :arm64
   depends_on macos: :ventura
-  depends_on "python@3.12"
+  depends_on "python"
   depends_on "sops"
 
   resource "pycparser" do
@@ -18,8 +18,8 @@ class ProxnixWorkstation < Formula
   end
 
   resource "cffi" do
-    url "https://files.pythonhosted.org/packages/df/a2/781b623f57358e360d62cdd7a8c681f074a71d445418a776eef0aadb4ab4/cffi-2.0.0-cp312-cp312-macosx_11_0_arm64.whl"
-    sha256 "8eca2a813c1cb7ad4fb74d368c2ffbbb4789d377ee5bb8df98373c2cc0dee76c"
+    url "https://files.pythonhosted.org/packages/eb/56/b1ba7935a17738ae8453301356628e8147c79dbb825bcbc73dc7401f9846/cffi-2.0.0.tar.gz"
+    sha256 "44d1b5909021139fe36001ae048dbdde8214afa20200eda0f64c068cac5d5529"
   end
 
   resource "cryptography" do
@@ -28,8 +28,7 @@ class ProxnixWorkstation < Formula
   end
 
   def install
-    python = Formula["python@3.12"].opt_bin/"python3.12"
-    venv = virtualenv_create(libexec, python)
+    venv = virtualenv_create(libexec, "python3")
     venv.pip_install resource("pycparser")
     venv.pip_install resource("cffi")
     venv.pip_install resource("cryptography")
