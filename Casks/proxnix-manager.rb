@@ -1,8 +1,8 @@
 cask "proxnix-manager" do
-  version "0.5.4"
-  sha256 "8b5f765758535928f6036e3c253e3c3848835134ef49f4e2d5a48bd644c76f94"
+  version "0.5.5"
+  sha256 "a8efacc97410afa6673485b3513e8761da4a4b141c1f74106999a69c900b13b1"
 
-  url "https://github.com/denMaier/proxnix/releases/download/v0.5.4/proxnix-manager-#{version}-macos-arm64.dmg"
+  url "https://github.com/denMaier/proxnix/releases/download/v0.5.5/proxnix-manager-#{version}-macos-arm64.dmg"
   name "Proxnix Manager"
   desc "macOS GUI for proxnix"
   homepage "https://github.com/denMaier/proxnix"

@@ -3,8 +3,8 @@ class ProxnixWorkstation < Formula
 
   desc "CLI and TUI workstation tooling for proxnix"
   homepage "https://github.com/denMaier/proxnix"
-  url "https://github.com/denMaier/proxnix/archive/v0.5.4.tar.gz"
-  sha256 "1a64b49854cd2811fc44ae72e39e8f6d0ca4d304c4d21e4603b3ea4e4ec6908c"
+  url "https://github.com/denMaier/proxnix/archive/v0.5.5.tar.gz"
+  sha256 "f61afdbe35c0899f395413417da78dc3bc77330fbafaf03325a2f4ce33ea64ca"
   license "MIT"
 
   depends_on arch: :arm64
