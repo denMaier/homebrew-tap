@@ -49,4 +49,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -am "Bump casks: $(git diff --name-only | xargs -n1 basename | sed 's/\.rb$//' | paste -sd ' ' -)"
-          git push origin HEAD:main
+          git push "https://x-access-token:${HOMEBREW_GITHUB_API_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
