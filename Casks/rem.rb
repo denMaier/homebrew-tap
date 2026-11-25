@@ -11,8 +11,8 @@ cask "rem" do
   homepage "https://github.com/liriliri/rem"
 
   livecheck do
-    url :stable
-    regex(/^v?(\d+(?:\.\d+)+)$/i)
+    url :url
+    strategy :github_latest
   end
 
   app "rem.app"

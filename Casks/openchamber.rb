@@ -11,8 +11,8 @@ cask "openchamber" do
   homepage "https://github.com/openchamber/openchamber"
 
   livecheck do
-    url :stable
-    regex(/^v?(\d+(?:\.\d+)+)$/i)
+    url :url
+    strategy :github_latest
   end
 
   auto_updates true

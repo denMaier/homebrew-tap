@@ -1,0 +1,52 @@
+name: Bump casks to new upstream releases
+
+# Checks every cask that has a livecheck block and commits a version and checksum bump when
+# upstream has a newer release. Casks without livecheck (proxnix-manager) are bumped by their own
+# project's release CI and are left alone.
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: autobump
+  cancel-in-progress: false
+
+jobs:
+  bump:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Homebrew with this repository as the tap
+        id: setup
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Bump outdated casks
+        env:
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOMEBREW_NO_INSTALL_FROM_API: 1
+        run: |
+          set -euo pipefail
+          tap_dir="$(brew --repository denmaier/tap)"
+          casks=$(grep -l "livecheck do" Casks/*.rb | xargs -n1 basename | sed 's/\.rb$//')
+          for cask in $casks; do
+            latest=$(brew livecheck --cask --json --newer-only "denmaier/tap/$cask" 2>/dev/null \
+              | jq -r '.[0].version.latest // empty' || true)
+            [ -n "$latest" ] || continue
+            echo "::notice::$cask -> $latest"
+            if ! brew bump-cask-pr --write-only --no-audit --no-style --no-browse \
+                 --version "$latest" "denmaier/tap/$cask"; then
+              echo "::warning::Could not bump $cask to $latest"
+            fi
+          done
+          # bump-cask-pr edits the tap's own checkout, which is this workspace.
+          cd "$tap_dir"
+          if git diff --quiet; then echo "Nothing to bump"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Bump casks: $(git diff --name-only | xargs -n1 basename | sed 's/\.rb$//' | paste -sd ' ' -)"
+          git push

@@ -11,8 +11,8 @@ cask "palot" do
   homepage "https://github.com/ItsWendell/palot"
 
   livecheck do
-    url :stable
-    regex(/^v?(\d+(?:\.\d+)+)$/i)
+    url :url
+    strategy :github_latest
   end
 
   auto_updates true
