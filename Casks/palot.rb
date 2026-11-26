@@ -1,7 +1,7 @@
 cask "palot" do
   # Upstream file names carry the commit and build number: version, commit, build.
-  version "0.23.0,62e36fd61502,20"
-  sha256 "3fc14dc717641e2da10f6882b0b034bead52280c2f5e7c321822a64448e4b877"
+  version "0.24.0,d716301b816b,23"
+  sha256 "29892863d4bc854e18d0eb631c4a25cf951cc02131f472f2587d266f6b8af434"
 
   url "https://github.com/ItsWendell/palot/releases/download/v#{version.csv.first}/Palot-#{version.csv.first}-stable-#{version.csv.second}-build-#{version.csv.third}-mac-arm64.dmg"
   name "Palot"
